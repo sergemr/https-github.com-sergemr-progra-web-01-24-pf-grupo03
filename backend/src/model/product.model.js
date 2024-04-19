@@ -88,7 +88,7 @@ Product.init({
   },
   is_stock: {
     type: DataTypes.BOOLEAN,
-    defaultValue: () => Math.random() < 0.5,
+    defaultValue: true, // Always in stock
     allowNull: false
   }
 }, {

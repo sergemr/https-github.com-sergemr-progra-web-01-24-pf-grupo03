@@ -78,18 +78,6 @@ router.post("/users", async (req, res) => {
     }
 });
 
-router.use(verifyToken)
-
-// Get all users
-router.get("/users", async (req, res) => {
-    const users = await User.findAll();
-    res.status(200).json({
-        ok: true,
-        status: 200,
-        body: users
-    });
-});
-
 // Get a single user by user_id
 router.get("/users/:user_id", async (req, res) => {
     const id = req.params.user_id;
@@ -114,6 +102,18 @@ router.get("/users/:user_id", async (req, res) => {
     });
 });
 
+
+//router.use(verifyToken)
+
+// Get all users
+router.get("/users", async (req, res) => {
+    const users = await User.findAll();
+    res.status(200).json({
+        ok: true,
+        status: 200,
+        body: users
+    });
+});
 
 
 // Update a user by user_id

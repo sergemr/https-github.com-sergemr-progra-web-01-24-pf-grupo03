@@ -1,9 +1,9 @@
 import React from 'react';
-import { AppBar, Box, Toolbar, Typography, Container, Button } from '@mui/material';
+import { AppBar, Box, Toolbar, Typography, Container, Button, IconButton } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../AuthContext';
 
-const pages = ['Ordenes'];
 
 function ResponsiveAppBar() {
   const { user, logout } = useAuth();
@@ -22,6 +22,10 @@ function ResponsiveAppBar() {
 
   const handleProductosClick = () => {
     navigate("/Productos");
+  };
+
+  const handleCarritoClick = () => {
+    navigate("/carrito");
   };
 
   return (
@@ -53,17 +57,17 @@ function ResponsiveAppBar() {
             >
               Productos
             </Button>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => { }}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
           </Box>
-          <Box sx={{ flexGrow: 0, display: 'flex', justifyContent: 'flex-end' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            {user && (
+              <IconButton
+                onClick={handleCarritoClick}
+                sx={{ color: 'white' }}
+                aria-label="Carrito"
+              >
+                <ShoppingCartIcon />
+              </IconButton>
+            )}
             {user ? (
               <Button onClick={handleLogoutClick} sx={{ my: 2, color: 'white' }}>Logout</Button>
             ) : (
